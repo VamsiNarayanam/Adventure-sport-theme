@@ -115,62 +115,127 @@
     });
   }
 
+  function getCounterFormatter(el) {
+    var fmt = (el.getAttribute("data-format") || "").trim().toLowerCase();
+    var decimals = parseInt(el.getAttribute("data-decimals") || "0", 10);
+    if (isNaN(decimals) || decimals < 0) decimals = 0;
+
+    if (fmt === "kplus" || fmt === "k+") {
+      return function (n) {
+        if (n < 1000) return String(n);
+        var v = n / 1000;
+        var s = decimals > 0 ? v.toFixed(decimals) : String(Math.round(v));
+        return s + "K+";
+      };
+    }
+
+    if (fmt === "mplus" || fmt === "m+") {
+      return function (n) {
+        if (n < 1000000) return String(n);
+        var v = n / 1000000;
+        var s = decimals > 0 ? v.toFixed(decimals) : String(Math.round(v));
+        return s + "M+";
+      };
+    }
+
+    if (fmt === "percent" || fmt === "%") {
+      return function (n) {
+        return String(n) + "%";
+      };
+    }
+
+    if (fmt === "plus" || fmt === "+") {
+      return function (n) {
+        return String(n) + "+";
+      };
+    }
+
+    return function (n) {
+      return String(n);
+    };
+  }
+
   function animateCounter(el, target, duration) {
     var start = 0;
     var startTime = null;
+    var format = getCounterFormatter(el);
+    var existing = parseInt((el.textContent || "").replace(/[^\d-]/g, ""), 10);
+    if (!isNaN(existing)) start = Math.max(0, Math.min(existing, target));
 
     function step(ts) {
       if (!startTime) startTime = ts;
       var p = Math.min((ts - startTime) / duration, 1);
       var eased = 1 - Math.pow(1 - p, 3);
       var val = Math.floor(start + (target - start) * eased);
-      el.textContent = String(val);
+      el.textContent = format(val);
       if (p < 1) requestAnimationFrame(step);
-      else el.textContent = String(target);
+      else el.textContent = format(target);
     }
 
     requestAnimationFrame(step);
   }
 
   function initCounters() {
-    var counters = document.querySelectorAll(".stat-counter[data-target]");
+    var counters = Array.prototype.slice.call(document.querySelectorAll(".stat-counter[data-target]"));
     if (!counters.length) return;
 
-    var done = false;
-
-    function run() {
-      if (done) return;
-      done = true;
-      counters.forEach(function (el) {
-        var t = parseInt(el.getAttribute("data-target"), 10);
-        if (isNaN(t)) return;
-        animateCounter(el, t, 1600);
-      });
+    function parseTarget(el) {
+      var t = parseInt(el.getAttribute("data-target"), 10);
+      return isNaN(t) ? null : t;
     }
 
-    var section = document.getElementById("stats");
-    if (!section) {
-      run();
-      return;
+    function runOne(el, duration, delayMs) {
+      if (el._counterDone) return;
+      var t = parseTarget(el);
+      if (t === null) return;
+      el._counterDone = true;
+      var d = typeof duration === "number" ? duration : 1600;
+      var delay = typeof delayMs === "number" ? delayMs : 0;
+      if (delay > 0) {
+        setTimeout(function () {
+          animateCounter(el, t, d);
+        }, delay);
+      } else {
+        animateCounter(el, t, d);
+      }
     }
+
+    // Hero counters are above-the-fold: reset + start slightly delayed so the user can see the animation.
+    counters.forEach(function (el) {
+      if (el.closest && el.closest(".hero-premium__stats-card")) {
+        // Always reset hero counters so they animate even on reload/bfcache.
+        el._counterDone = false;
+        el.textContent = "0";
+        runOne(el, 2200, 450);
+      }
+    });
+
+    var remaining = counters.filter(function (el) {
+      return !el._counterDone;
+    });
+    if (!remaining.length) return;
 
     if (!("IntersectionObserver" in window)) {
-      run();
+      remaining.forEach(function (el) {
+        runOne(el);
+      });
       return;
     }
 
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (en) {
-          if (en.isIntersecting) {
-            run();
-            io.disconnect();
-          }
+          if (!en.isIntersecting) return;
+          runOne(en.target);
+          io.unobserve(en.target);
         });
       },
-      { threshold: 0.25 }
+      { threshold: 0.35 }
     );
-    io.observe(section);
+
+    remaining.forEach(function (el) {
+      io.observe(el);
+    });
   }
 
   function initTestimonialSlider() {

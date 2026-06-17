@@ -87,6 +87,14 @@
     align-items: center;
     width: 100%;
   }
+
+  .footer-contact__addr {
+    align-items: center;
+  }
+
+  .footer-contact__addr p {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {

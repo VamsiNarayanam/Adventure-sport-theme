@@ -898,7 +898,7 @@ body {
 .hero-premium__stats-card {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 1rem;
   padding: 1.5rem 1.35rem;
   background: rgba(15, 28, 34, 0.72);
   backdrop-filter: blur(16px);
@@ -906,7 +906,8 @@ body {
   border: 1px solid rgba(45, 212, 191, 0.28);
   border-radius: 1rem;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
-  min-width: 0;
+  margin-right:50px;
+
 }
 
 .hero-premium__stat-item {
@@ -2479,8 +2480,8 @@ ul.check-list {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   padding-bottom: 3rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  justify-items: center;
-  text-align: center;
+  justify-items: start;
+  text-align: left;
 }
 
 .footer-premium__grid > * {
@@ -2491,13 +2492,13 @@ ul.check-list {
 .footer-premium .footer-brand {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   max-width: 340px;
 }
 
 .footer-premium .footer-brand .logo {
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .footer-premium h4 {
@@ -2514,7 +2515,7 @@ ul.check-list {
   padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .footer-premium a {
@@ -2540,7 +2541,7 @@ ul.check-list {
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
 }
 
@@ -2550,7 +2551,7 @@ ul.check-list {
   line-height: 1.55;
   color: rgba(255, 255, 255, 0.72);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
 }
 
