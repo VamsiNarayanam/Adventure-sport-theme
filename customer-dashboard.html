@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stackly Adventure adventurer portal — track expeditions, messages, payments, and trip progress.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a1214">
+  <title>Adventurer Portal — Stackly Adventure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/premium.css">
+  <link rel="stylesheet" href="css/premium-responsive.css">
+</head>
+<body class="dashboard-page dashboard-page--customer premium-theme">
+
+  <div class="dashboard-backdrop" data-dash-backdrop aria-hidden="true"></div>
+
+  <div class="dashboard-shell">
+    <aside class="dashboard-sidebar-pro" data-dash-sidebar id="dash-sidebar" aria-label="Adventurer sidebar">
+      <div class="dashboard-sidebar-pro__logo">
+        <a class="dashboard-sidebar-pro__logo-link" href="index.html" aria-label="Stackly Adventure home">
+          <img class="dashboard-sidebar-pro__logo-img" src="images/stackly-adventure.webp" alt="" width="180" height="40" decoding="async">
+        </a>
+      </div>
+      <div class="dashboard-sidebar-pro__profile" data-dash-profile>
+        <div class="dashboard-sidebar-pro__avatar" data-dash-avatar aria-hidden="true">AD</div>
+        <div class="dashboard-sidebar-pro__profile-meta">
+          <strong class="dashboard-sidebar-pro__profile-name" data-dash-user-name>Adventurer</strong>
+          <span class="dashboard-sidebar-pro__profile-email" data-dash-user-email>adventurer@Stackly.com</span>
+          <span class="dashboard-sidebar-pro__profile-role" data-dash-user-role>Adventurer</span>
+        </div>
+      </div>
+      <p class="dashboard-sidebar-pro__console-label">Adventurer portal</p>
+      <ul class="dashboard-nav-pro">
+        <li><a href="#profile" class="is-active">Profile</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#trips">My Trips</a></li>
+        <li><a href="#messages">Messages</a></li>
+        <li><a href="#payments">Payments</a></li>
+        <li><a href="#tracking">Trip Tracking</a></li>
+      </ul>
+    </aside>
+
+    <div class="dashboard-main-pro">
+      <button type="button" class="dash-sidebar-toggle" data-dash-sidebar-toggle aria-expanded="false" aria-controls="dash-sidebar">☰ Menu</button>
+
+      <div class="dashboard-top" id="profile">
+        <div>
+          <h1>Your adventurer portal</h1>
+          <p class="dashboard-top__sub" data-dash-greeting>Welcome back. Track expeditions, messages, and payments in one place.</p>
+        </div>
+        <a class="btn btn--outline-dark" href="404.html">Contact support</a>
+      </div>
+
+      <section class="customer-dash-hero" aria-label="Welcome banner">
+        <div>
+          <h2 class="customer-dash-hero__title">Your next summit awaits</h2>
+          <p class="customer-dash-hero__meta">Your Chamonix alpine trek departs in 12 days. Pre-trip briefing scheduled for Jun 20 — gear checklist is ready in your portal.</p>
+        </div>
+        <div class="customer-dash-hero__actions">
+          <a class="btn btn--primary" href="404.html">Book Your Expedition</a>
+          <a class="btn btn--outline-dark" href="login.html" data-dash-signout>Sign out</a>
+          <a class="btn btn--ghost" href="404.html">Contact support</a>
+        </div>
+      </section>
+
+      <div class="dash-stat-grid" aria-label="Your snapshot">
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Active trips</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--flat">In progress</span>
+          </div>
+          <span class="dash-stat-card__value">2</span>
+          <span class="dash-stat-card__hint">5 expeditions all-time · 3 completed</span>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Unread messages</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--up">New</span>
+          </div>
+          <span class="dash-stat-card__value">3</span>
+          <span class="dash-stat-card__hint">From your guide team</span>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Next payment</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--flat">Jul 1</span>
+          </div>
+          <span class="dash-stat-card__value">$749</span>
+          <span class="dash-stat-card__hint">Expedition Pass installment</span>
+        </div>
+      </div>
+
+      <div class="dashboard-panel" id="profile-detail">
+        <div class="dashboard-panel__head">Profile</div>
+        <div class="dashboard-panel__body profile-detail-grid">
+          <div class="profile-detail-grid__col">
+            <p class="profile-detail-grid__label"><strong>Expedition pass</strong></p>
+            <p class="profile-detail-grid__value" data-dash-org-label>Expedition Pass</p>
+            <p class="profile-detail-grid__label"><strong>Primary contact</strong></p>
+            <p class="profile-detail-grid__value" data-dash-profile-contact>Adventurer · adventurer@Stackly Adventure.com</p>
+          </div>
+          <div class="profile-detail-grid__col">
+            <p class="profile-detail-grid__label"><strong>Experience level</strong></p>
+            <p class="profile-detail-grid__value">Intermediate · Alpine &amp; climbing</p>
+            <p class="profile-detail-grid__note">Need to update your profile? Your expedition concierge can adjust preferences within one business day.</p>
+          </div>
+        </div>
+      </div>
+
+      <section id="insights" aria-labelledby="insights-heading">
+        <h2 class="visually-hidden" id="insights-heading">Insights</h2>
+        <div class="dash-chart-grid">
+          <div class="dashboard-panel dash-chart-panel">
+            <div class="dashboard-panel__head">
+              <span>Trip status mix</span>
+              <span class="dash-chart-panel__sub">Your expeditions by status</span>
+            </div>
+            <div class="dashboard-panel__body dash-chart-panel__body dash-chart-panel__body--tall">
+              <canvas id="customer-chart-status" aria-label="Polar chart of trip status mix"></canvas>
+            </div>
+          </div>
+          <div class="dashboard-panel dash-chart-panel">
+            <div class="dashboard-panel__head">
+              <span>Milestone progress</span>
+              <span class="dash-chart-panel__sub">Chamonix alpine trek preparation</span>
+            </div>
+            <div class="dashboard-panel__body dash-chart-panel__body dash-chart-panel__body--tall">
+              <canvas id="customer-chart-phases" aria-label="Horizontal bar chart of milestone completion"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="dashboard-panel" id="trips">
+        <div class="dashboard-panel__head">My expeditions</div>
+        <div class="dashboard-panel__body dashboard-panel__body--scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Expedition</th>
+                <th>Booked</th>
+                <th>Guide</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alpine Trek — Chamonix</td>
+                <td>May 28, 2026</td>
+                <td>Carlos Mendez</td>
+                <td><span class="badge badge--info">Preparing</span></td>
+              </tr>
+              <tr>
+                <td>Rock Climbing — Yosemite</td>
+                <td>Apr 14, 2026</td>
+                <td>Sarah Kim</td>
+                <td><span class="badge badge--info">In progress</span></td>
+              </tr>
+              <tr>
+                <td>Kayaking — Norwegian Fjords</td>
+                <td>Feb 8, 2026</td>
+                <td>Erik Johansson</td>
+                <td><span class="badge badge--success">Completed</span></td>
+              </tr>
+              <tr>
+                <td>Trail Running — Colorado</td>
+                <td>Jan 15, 2026</td>
+                <td>Mike Torres</td>
+                <td><span class="badge badge--success">Completed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="two-col-dash">
+        <div class="dashboard-panel" id="messages">
+          <div class="dashboard-panel__head">Messages</div>
+          <div class="dashboard-panel__body">
+            <ul class="msg-thread">
+              <li class="msg-thread__item">
+                <span class="msg-thread__from">Carlos Mendez · Lead Guide</span>
+                <p class="msg-thread__text">Your Chamonix gear checklist is ready — please review crampon sizing before Jun 20 briefing.</p>
+                <span class="msg-thread__time">Today, 10:30 AM</span>
+              </li>
+              <li class="msg-thread__item">
+                <span class="msg-thread__from">Stackly Adventure Support</span>
+                <p class="msg-thread__text">Your Expedition Pass renewal is set for Jul 1. No action needed — auto-renewal is enabled.</p>
+                <span class="msg-thread__time">Jun 10, 2026</span>
+              </li>
+              <li class="msg-thread__item">
+                <span class="msg-thread__from">You</span>
+                <p class="msg-thread__text">Can we add a rest day on the Yosemite itinerary? Happy to adjust pace for the group.</p>
+                <span class="msg-thread__time">Jun 8, 2026</span>
+              </li>
+              <li class="msg-thread__item">
+                <span class="msg-thread__from">Sarah Kim · Guide</span>
+                <p class="msg-thread__text">Absolutely — I've updated the route plan. Check your portal for the revised day-by-day schedule.</p>
+                <span class="msg-thread__time">Jun 7, 2026</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="dashboard-panel" id="payments">
+          <div class="dashboard-panel__head">Payments</div>
+          <div class="dashboard-panel__body dashboard-panel__body--scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Invoice</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>INV-2026-089</td>
+                  <td>$749</td>
+                  <td><span class="badge badge--pending">Due Jul 1</span></td>
+                </tr>
+                <tr>
+                  <td>INV-2026-072</td>
+                  <td>$749</td>
+                  <td><span class="badge badge--success">Paid</span></td>
+                </tr>
+                <tr>
+                  <td>INV-2026-055</td>
+                  <td>$189</td>
+                  <td><span class="badge badge--success">Paid</span></td>
+                </tr>
+                <tr>
+                  <td>INV-2026-041</td>
+                  <td>$749</td>
+                  <td><span class="badge badge--success">Paid</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-panel" id="tracking">
+        <div class="dashboard-panel__head">Trip tracking</div>
+        <div class="dashboard-panel__body">
+          <ul class="dash-progress-list">
+            <li class="is-done">
+              <span class="dash-progress-list__dot" aria-hidden="true"></span>
+              <div class="dash-progress-list__body">
+                <strong>Booking confirmed</strong>
+                <span>Chamonix alpine trek reserved — deposit received May 28.</span>
+              </div>
+            </li>
+            <li class="is-done">
+              <span class="dash-progress-list__dot" aria-hidden="true"></span>
+              <div class="dash-progress-list__body">
+                <strong>Gear checklist sent</strong>
+                <span>Personalized packing list and rental sizing completed Jun 5.</span>
+              </div>
+            </li>
+            <li class="is-active">
+              <span class="dash-progress-list__dot" aria-hidden="true"></span>
+              <div class="dash-progress-list__body">
+                <strong>Pre-trip briefing</strong>
+                <span>Scheduled Jun 20 — virtual meet with guide Carlos Mendez.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dash-progress-list__dot" aria-hidden="true"></span>
+              <div class="dash-progress-list__body">
+                <strong>Departure day</strong>
+                <span>Jul 2 — transport to Chamonix basecamp included.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dash-progress-list__dot" aria-hidden="true"></span>
+              <div class="dash-progress-list__body">
+                <strong>Summit attempt</strong>
+                <span>Jul 6–8 — weather window TBD, guide monitors forecasts daily.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dash-progress-list__dot" aria-hidden="true"></span>
+              <div class="dash-progress-list__body">
+                <strong>Post-trip recap</strong>
+                <span>Photo gallery and route notes delivered within 48 hours of return.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

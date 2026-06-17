@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stackly Adventure admin console — manage users, expedition bookings, messages, and analytics.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a1214">
+  <title>Admin Console — Stackly Adventure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/premium.css">
+  <link rel="stylesheet" href="css/premium-responsive.css">
+</head>
+<body class="dashboard-page dashboard-page--admin premium-theme">
+
+  <div class="dashboard-backdrop" data-dash-backdrop aria-hidden="true"></div>
+
+  <div class="dashboard-shell">
+    <aside class="dashboard-sidebar-pro" data-dash-sidebar id="dash-sidebar" aria-label="Admin sidebar">
+      <div class="dashboard-sidebar-pro__logo">
+        <a class="dashboard-sidebar-pro__logo-link" href="index.html" aria-label="Stackly Adventure home">
+          <img class="dashboard-sidebar-pro__logo-img" src="images/stackly-adventure.webp" alt="" width="180" height="40" decoding="async">
+        </a>
+      </div>
+      <div class="dashboard-sidebar-pro__profile" data-dash-profile>
+        <div class="dashboard-sidebar-pro__avatar" data-dash-avatar aria-hidden="true">AU</div>
+        <div class="dashboard-sidebar-pro__profile-meta">
+          <strong class="dashboard-sidebar-pro__profile-name" data-dash-user-name>Admin user</strong>
+          <span class="dashboard-sidebar-pro__profile-email" data-dash-user-email>admin@Stackly Adventure.com</span>
+          <span class="dashboard-sidebar-pro__profile-role" data-dash-user-role>Administrator</span>
+        </div>
+      </div>
+      <p class="dashboard-sidebar-pro__console-label">Admin console</p>
+      <ul class="dashboard-nav-pro">
+        <li><a href="#overview" class="is-active">Overview</a></li>
+        <li><a href="#users">Users</a></li>
+        <li><a href="#bookings">Bookings</a></li>
+        <li><a href="#messages">Messages</a></li>
+        <li><a href="#analytics">Analytics</a></li>
+        <li><a href="#reports">Reports</a></li>
+      </ul>
+    </aside>
+
+    <div class="dashboard-main-pro">
+      <button type="button" class="dash-sidebar-toggle" data-dash-sidebar-toggle aria-expanded="false" aria-controls="dash-sidebar">☰ Menu</button>
+
+      <div class="dashboard-top" id="overview">
+        <div>
+          <h1>Operations overview</h1>
+          <p class="dashboard-top__sub" data-dash-greeting>Welcome back. Live snapshot of adventurers, bookings, and expedition activity.</p>
+        </div>
+        <a class="btn btn--outline-dark" href="login.html" data-dash-signout>Sign out</a>
+      </div>
+
+      <div class="dash-stat-grid" aria-label="Key metrics">
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Active users</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--up">+6.1%</span>
+          </div>
+          <span class="dash-stat-card__value">2,847</span>
+          <span class="dash-stat-card__hint">Adventurers &amp; guides</span>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Open bookings</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--flat">Stable</span>
+          </div>
+          <span class="dash-stat-card__value">68</span>
+          <span class="dash-stat-card__hint">Across all stages</span>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Messages</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--up">+12%</span>
+          </div>
+          <span class="dash-stat-card__value">412</span>
+          <span class="dash-stat-card__hint">Last 7 days</span>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Conversion rate</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--up">+0.8pp</span>
+          </div>
+          <span class="dash-stat-card__value">4.6%</span>
+          <span class="dash-stat-card__hint">Inquiry → booking</span>
+        </div>
+      </div>
+
+      <section id="analytics" class="dash-chart-grid" aria-label="Analytics charts">
+        <div class="dashboard-panel dash-chart-panel">
+          <div class="dashboard-panel__head">
+            <span>Portal sessions</span>
+            <span class="dash-chart-panel__sub">Unique active sessions</span>
+          </div>
+          <div class="dashboard-panel__body dash-chart-panel__body">
+            <canvas id="admin-chart-sessions" aria-label="Line chart of portal sessions by day"></canvas>
+          </div>
+        </div>
+        <div class="dashboard-panel dash-chart-panel">
+          <div class="dashboard-panel__head">
+            <span>Expedition bookings</span>
+            <span class="dash-chart-panel__sub">Count by pipeline stage</span>
+          </div>
+          <div class="dashboard-panel__body dash-chart-panel__body">
+            <canvas id="admin-chart-stages" aria-label="Bar chart of bookings by stage"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="dash-chart-grid" aria-label="Lead sources and guide utilization">
+        <div class="dashboard-panel dash-chart-panel dash-chart-panel--compact">
+          <div class="dashboard-panel__head">
+            <span>Lead sources</span>
+            <span class="dash-chart-panel__sub">Attributed mix</span>
+          </div>
+          <div class="dashboard-panel__body dash-chart-panel__body">
+            <canvas id="admin-chart-channels" aria-label="Doughnut chart of lead sources"></canvas>
+          </div>
+        </div>
+        <div class="dashboard-panel dash-chart-panel">
+          <div class="dashboard-panel__head">
+            <span>Guide utilization</span>
+            <span class="dash-chart-panel__sub">Field team capacity — last 6 weeks</span>
+          </div>
+          <div class="dashboard-panel__body dash-chart-panel__body">
+            <canvas id="admin-chart-load" aria-label="Line chart of guide utilization percentage"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <div class="two-col-dash">
+        <div class="dashboard-panel" id="users">
+          <div class="dashboard-panel__head">User management</div>
+          <div class="dashboard-panel__body dashboard-panel__body--scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Maya Rodriguez</td>
+                  <td>maya.r@email.com</td>
+                  <td>Adventurer</td>
+                  <td><span class="badge badge--success">Active</span></td>
+                </tr>
+                <tr>
+                  <td>James Okonkwo</td>
+                  <td>j.okonkwo@email.com</td>
+                  <td>Adventurer</td>
+                  <td><span class="badge badge--success">Active</span></td>
+                </tr>
+                <tr>
+                  <td>Elena Vasquez</td>
+                  <td>e.vasquez@email.com</td>
+                  <td>Adventurer</td>
+                  <td><span class="badge badge--pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>Carlos Mendez</td>
+                  <td>c.mendez@Stackly Adventure.com</td>
+                  <td>Guide</td>
+                  <td><span class="badge badge--success">Active</span></td>
+                </tr>
+                <tr>
+                  <td>Jamal Hussein</td>
+                  <td>j.hussein@Stackly Adventure.com</td>
+                  <td>Admin</td>
+                  <td><span class="badge badge--success">Active</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="dashboard-panel" id="bookings">
+          <div class="dashboard-panel__head">Expedition bookings</div>
+          <div class="dashboard-panel__body dashboard-panel__body--scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Adventure</th>
+                  <th>Adventurer</th>
+                  <th>Stage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#EXP-2847</td>
+                  <td>Alpine Trek — Chamonix</td>
+                  <td>Maya Rodriguez</td>
+                  <td><span class="badge badge--info">Confirmed</span></td>
+                </tr>
+                <tr>
+                  <td>#EXP-2848</td>
+                  <td>Rock Climbing — Yosemite</td>
+                  <td>James Okonkwo</td>
+                  <td><span class="badge badge--pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>#EXP-2849</td>
+                  <td>Kayaking — Norwegian Fjords</td>
+                  <td>Elena Vasquez</td>
+                  <td><span class="badge badge--success">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>#EXP-2850</td>
+                  <td>Trail Running — Colorado</td>
+                  <td>Alex Turner</td>
+                  <td><span class="badge badge--info">In progress</span></td>
+                </tr>
+                <tr>
+                  <td>#EXP-2851</td>
+                  <td>Camping — Glacier NP</td>
+                  <td>Sophie Laurent</td>
+                  <td><span class="badge badge--pending">Review</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-panel" id="messages">
+        <div class="dashboard-panel__head">Messages</div>
+        <div class="dashboard-panel__body dashboard-panel__body--scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>From</th>
+                <th>Subject</th>
+                <th>Received</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Maya Rodriguez</td>
+                <td>Chamonix trek — gear checklist question</td>
+                <td>Today, 8:42 AM</td>
+              </tr>
+              <tr>
+                <td>James Okonkwo</td>
+                <td>Yosemite dates — reschedule request</td>
+                <td>Yesterday, 4:15 PM</td>
+              </tr>
+              <tr>
+                <td>Elena Vasquez</td>
+                <td>Fjord expedition photo gallery</td>
+                <td>Jun 12, 2026</td>
+              </tr>
+              <tr>
+                <td>Carlos Mendez</td>
+                <td>Guide availability — Patagonia season</td>
+                <td>Jun 11, 2026</td>
+              </tr>
+              <tr>
+                <td>Alex Turner</td>
+                <td>Trail running camp — nutrition plan</td>
+                <td>Jun 10, 2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dashboard-panel" id="reports">
+        <div class="dashboard-panel__head">Reports</div>
+        <div class="dashboard-panel__body">
+          <p class="dashboard-panel__desc">Export expedition performance, guide utilization, and booking revenue summaries.</p>
+          <div class="dashboard-panel__actions">
+            <button type="button" onclick="window.location.href='404.html'" class="btn btn--ghost">Download guide utilization (CSV)</button>
+            <button type="button" onclick="window.location.href='404.html'" class="btn btn--ghost">Booking pipeline snapshot (PDF)</button>
+            <button type="button" onclick="window.location.href='404.html'" class="btn btn--primary">Schedule monthly report</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
