@@ -7,6 +7,58 @@
     el.style.display = "block";
   }
 
+  function markFormForResetOnReturn(formId) {
+    try {
+      sessionStorage.setItem("reset-" + formId + "-on-return", "1");
+    } catch (e) {
+      /* ignore storage restrictions */
+    }
+  }
+
+  function shouldResetFormOnReturn(formId) {
+    try {
+      var key = "reset-" + formId + "-on-return";
+      var shouldReset = sessionStorage.getItem(key) === "1";
+      if (shouldReset) sessionStorage.removeItem(key);
+      return shouldReset;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function resetContactFormState() {
+    var form = document.getElementById("contact-form");
+    if (!form) return;
+
+    form.reset();
+    form.querySelectorAll("input, textarea").forEach(function (input) {
+      input.value = "";
+      input.defaultValue = "";
+    });
+    form.querySelectorAll("select").forEach(function (select) {
+      select.selectedIndex = 0;
+    });
+    form.querySelectorAll(".form-field.has-error").forEach(function (field) {
+      field.classList.remove("has-error");
+    });
+
+    var msg = document.getElementById("contact-success");
+    if (msg) {
+      if (msg._redirectTimer) {
+        clearTimeout(msg._redirectTimer);
+        msg._redirectTimer = null;
+      }
+      msg.classList.add("is-hidden");
+      msg.style.display = "";
+    }
+
+    var submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send message";
+    }
+  }
+
     const preloader = document.getElementById("preloader");
   if (preloader) {
     var progressBar = preloader.querySelector(".preloader__progress-fill");
@@ -465,6 +517,8 @@
             contactSubmitBtn.textContent = "Redirecting...";
           }
           var contactRedirectTimer = setTimeout(function () {
+            markFormForResetOnReturn("contact-form");
+            resetContactFormState();
             window.location.href = "404.html";
           }, 3000);
           if (msg) {
@@ -823,9 +877,11 @@
     initScrollAutoplayVideos();
     initHeroVideo();
     initAos();
+    if (shouldResetFormOnReturn("contact-form")) resetContactFormState();
   });
 
   window.addEventListener("pageshow", function (event) {
     if (event.persisted) initAuthFormDefaults();
+    if (shouldResetFormOnReturn("contact-form")) resetContactFormState();
   });
 })();
